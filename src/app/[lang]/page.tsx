@@ -27,7 +27,7 @@ export default async function LandingPage({
       <section className="relative min-h-screen flex items-end pb-20 pt-24 overflow-hidden">
         {/* Background image placeholder */}
         <div className="absolute inset-0">
-          <Image src="/6.png" alt="Hero" fill className="object-cover" />
+          <Image src="/hero-bg.png" alt="Hero" fill className="object-cover" />
           {/* Dark gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#060b28]/90 via-[#060b28]/60 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#060b28]/80 via-transparent to-[#060b28]/40" />
