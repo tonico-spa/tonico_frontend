@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
 import { content, type Lang } from "@/lib/content";
+import Image from "next/image";
 
 export function generateStaticParams() {
   return [{ lang: "es" }, { lang: "en" }];
@@ -27,11 +27,7 @@ export default async function LandingPage({
       <section className="relative min-h-screen flex items-end pb-20 pt-24 overflow-hidden">
         {/* Background image placeholder */}
         <div className="absolute inset-0">
-          <ImagePlaceholder
-            label="Hero — Woman at computer (purple/blue tones)"
-            className="w-full h-full"
-            aspectRatio=""
-          />
+          <Image src="/6.png" alt="Hero" fill className="object-cover" />
           {/* Dark gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#060b28]/90 via-[#060b28]/60 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#060b28]/80 via-transparent to-[#060b28]/40" />
@@ -100,11 +96,7 @@ export default async function LandingPage({
 
       {/* ─── FULL-WIDTH GAME ART BANNER ───────────────────────── */}
       <section className="w-full">
-        <ImagePlaceholder
-          label="Game Art Banner — Dr. Mortis atmospheric scene (moon, gate, characters)"
-          aspectRatio="aspect-[16/7]"
-          className="w-full"
-        />
+        <Image src="/game-banner.png" alt="Game Art Banner" width={0} height={0} sizes="100vw" style={{ width: "100%", height: "auto" }} />
       </section>
 
       {/* ─── VIDEO SECTION ────────────────────────────────────── */}
@@ -113,11 +105,7 @@ export default async function LandingPage({
           {/* YouTube video placeholder */}
           <div className="w-full aspect-video bg-[#0d1145] border border-[#2a3070] rounded-xl overflow-hidden relative flex items-center justify-center">
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-              <ImagePlaceholder
-                label="YouTube Video Thumbnail"
-                className="absolute inset-0 w-full h-full"
-                aspectRatio=""
-              />
+              <Image src="/hero-bg.png" alt="Video Thumbnail" fill className="object-cover" />
               {/* Play button overlay */}
               <div className="relative z-10 w-16 h-16 bg-[#e91e8c] rounded-full flex items-center justify-center shadow-lg shadow-[#e91e8c]/40 hover:scale-110 transition-transform cursor-pointer">
                 <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
@@ -135,18 +123,10 @@ export default async function LandingPage({
 
       {/* ─── SCENE IMAGES ─────────────────────────────────────── */}
       <section className="w-full">
-        <ImagePlaceholder
-          label="Game Scene — Library interior with characters"
-          aspectRatio="aspect-[21/9]"
-          className="w-full"
-        />
+        <Image src="/scene-library.png" alt="Game Scene — Library" width={0} height={0} sizes="100vw" style={{ width: "100%", height: "auto" }} />
       </section>
       <section className="w-full">
-        <ImagePlaceholder
-          label="Game Scene — Street/outdoor scene with characters"
-          aspectRatio="aspect-[21/9]"
-          className="w-full"
-        />
+        <Image src="/scene-street.png" alt="Game Scene — Street" width={0} height={0} sizes="100vw" style={{ width: "100%", height: "auto" }} />
       </section>
 
       {/* ─── ABOUT MORTIS ─────────────────────────────────────── */}
@@ -154,11 +134,9 @@ export default async function LandingPage({
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           {/* Left — Book cover placeholder */}
           <div>
-            <ImagePlaceholder
-              label="Book Cover — Mortis: Eterno Retorno"
-              aspectRatio="aspect-[3/4]"
-              className="w-full max-w-xs mx-auto rounded-lg overflow-hidden"
-            />
+            <div className="relative w-full max-w-xs mx-auto rounded-lg overflow-hidden aspect-[3/4]">
+              <Image src="/mortis-book.png" alt="Book Cover — Mortis: Eterno Retorno" fill className="object-cover" />
+            </div>
           </div>
 
           {/* Right — Text */}
@@ -194,23 +172,22 @@ export default async function LandingPage({
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-10">
-            {t.team.members.map((member, i) => (
+            {t.team.members.map((member, i) => {
+              const avatarFiles = [
+                "/team-kathy.jpg",
+                "/team-pablo.jpg",
+                "/team-angeles.jpg",
+                "/team-ianka.jpg",
+                "/team-sebastian.jpg",
+                "/team-matias.jpg",
+                "/team-paulina.jpg",
+                "/team-estefania.jpg",
+              ];
+              return (
               <div key={i} className="flex flex-col items-center gap-3 text-center">
-                {/* Avatar placeholder */}
-                <div className="w-20 h-20 rounded-full bg-[#1a1f4e] border-2 border-[#2a3070] overflow-hidden flex items-center justify-center">
-                  <svg
-                    className="w-10 h-10 text-[#3a4080]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
+                {/* Avatar */}
+                <div className="w-20 h-20 rounded-full border-2 border-[#2a3070] overflow-hidden relative">
+                  <Image src={avatarFiles[i]} alt={member.name} fill className="object-cover" />
                 </div>
                 <div>
                   <p className="text-[#e91e8c] text-[10px] font-bold tracking-widest uppercase">
@@ -219,7 +196,8 @@ export default async function LandingPage({
                   <p className="text-white text-sm mt-0.5">{member.name}</p>
                 </div>
               </div>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>

@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
 import { content, type Lang } from "@/lib/content";
 
 export function generateStaticParams() {
@@ -69,11 +69,9 @@ export default async function DrMortisPage({
             </div>
             {/* Image column */}
             <div className="space-y-4">
-              <ImagePlaceholder
-                label="Radio actors — historical photo"
-                aspectRatio="aspect-[4/3]"
-                className="w-full rounded-lg"
-              />
+              <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+                <Image src="/radio-actors.png" alt="Radio actors — historical photo" fill className="object-cover" />
+              </div>
             </div>
           </div>
 
@@ -87,11 +85,9 @@ export default async function DrMortisPage({
               )}
             </div>
             <div className="space-y-4">
-              <ImagePlaceholder
-                label="Comics magazine cover — early Dr. Mortis"
-                aspectRatio="aspect-[3/4]"
-                className="w-full max-w-[180px] mx-auto rounded-lg"
-              />
+              <div className="relative w-full max-w-[180px] mx-auto aspect-[3/4] rounded-lg overflow-hidden">
+                <Image src="/comic-cover-1.jpeg" alt="Comics magazine cover" fill className="object-cover" />
+              </div>
             </div>
           </div>
 
@@ -123,13 +119,10 @@ export default async function DrMortisPage({
 
           {/* Three comic cover images */}
           <div className="grid grid-cols-3 gap-4">
-            {dm.sections[1].images.map((img, i) => (
-              <ImagePlaceholder
-                key={i}
-                label={`Comic cover ${i + 1}`}
-                aspectRatio="aspect-[3/4]"
-                className="w-full rounded-lg"
-              />
+            {["/comic-cover-1.jpeg", "/comic-cover-2.png", "/comic-cover-3.png"].map((src, i) => (
+              <div key={i} className="relative w-full aspect-[3/4] rounded-lg overflow-hidden">
+                <Image src={src} alt={`Comic cover ${i + 1}`} fill className="object-cover" />
+              </div>
             ))}
           </div>
         </section>
@@ -149,16 +142,9 @@ export default async function DrMortisPage({
           </div>
 
           {/* Three Mortis: Eterno Retorno covers */}
-          <div className="grid grid-cols-3 gap-4">
-            {dm.sections[2].images.map((img, i) => (
-              <ImagePlaceholder
-                key={i}
-                label={`Mortis: Eterno Retorno cover ${i + 1}`}
-                aspectRatio="aspect-[3/4]"
-                className="w-full rounded-lg"
-              />
-            ))}
-          </div>
+               <section className="w-full" style={{ alignContent: "center" }}>
+                      <Image src="/mortis-eterno-1.jpg" alt="Game Scene — Library" width={0} height={0} sizes="100vw" style={{ width: "70%", height: "auto", alignSelf: "center" }} />
+                    </section>
         </section>
 
         {/* ─── BOTTOM NAV ───────────────────────────────────── */}
