@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import FadeInSection from "@/components/FadeInSection";
 import { content, type Lang } from "@/lib/content";
 import Image from "next/image";
+import YouTubePlayer from "@/components/YouTubePlayer";
 
 export function generateStaticParams() {
   return [{ lang: "es" }, { lang: "en" }];
@@ -114,19 +115,7 @@ export default async function LandingPage({
       <section className="bg-[#060b28] py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <FadeInSection>
-            <div className="w-full aspect-video bg-[#0d1145] border border-[#2a3070] rounded-xl overflow-hidden relative flex items-center justify-center">
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                <Image src="/hero-bg.png" alt="Video Thumbnail" fill className="object-cover" />
-                <div className="animate-breathe relative z-10 w-16 h-16 bg-[#e91e8c] rounded-full flex items-center justify-center shadow-lg shadow-[#e91e8c]/40 cursor-pointer">
-                  <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-              </div>
-              <div className="absolute bottom-3 right-3 bg-black/70 px-2 py-1 rounded text-xs text-white/60 z-10">
-                ▶ YouTube
-              </div>
-            </div>
+            <YouTubePlayer videoId="etBa1Bnk2Pw" />
           </FadeInSection>
         </div>
       </section>
